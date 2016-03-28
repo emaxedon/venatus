@@ -1,8 +1,7 @@
 package com.vinctus.venatus.server
 
-import akka.actor.{ Actor, ActorRef, Props }
+import akka.actor.{ Actor, Props }
 import akka.io.{ IO, Tcp }
-import akka.util.ByteString
 import java.net.InetSocketAddress
 import com.vinctus.venatus.handler._
 
