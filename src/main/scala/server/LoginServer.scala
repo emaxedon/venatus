@@ -3,9 +3,9 @@ package com.vinctus.venatus.server
 import akka.actor.{ Actor, Props }
 import akka.io.{ IO, Tcp }
 import java.net.InetSocketAddress
-import com.vinctus.venatus.handler._
+import com.vinctus.venatus.handler.LoginHandler
 
-class Server extends Actor {
+class LoginServer extends Actor {
 
   import Tcp._
   import context.system
@@ -14,15 +14,15 @@ class Server extends Actor {
 
   def receive = {
     case b @ Tcp.Bound(localAddress) =>
-      println(s"Server: bound at $localAddress")
+      println(s"LoginServer: bound at $localAddress")
  
     case Tcp.CommandFailed(_: Bind) =>
-      println("Server: failed to bind")
+      println("LoginServer: failed to bind")
       context.stop(self)
  
     case c @ Tcp.Connected(remote, local) =>
-      println(s"Server: connection made to server from $remote")
-      val handler = context.actorOf(Props[PacketHandler])
+      println(s"LoginServer: connection made to server from $remote")
+      val handler = context.actorOf(Props[LoginHandler])
       val connection = sender
       connection ! Tcp.Register(handler)
   }

@@ -2,11 +2,11 @@ package com.vinctus.venatus.handler
 
 import akka.actor.{ Actor, ActorRef, Props }
 import akka.io.{ IO, Tcp }
-import akka.util.{ ByteString, ByteIterator }
+import akka.util.ByteString
 import akka.io.Tcp.{ Write, Received }
 import com.vinctus.venatus.protobuf.LoginProtos._
 
-class PacketHandler extends Actor {
+class LoginHandler extends Actor {
 
   def receive: Receive = {
     case Tcp.Received(data) =>
