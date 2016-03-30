@@ -1,9 +1,0 @@
-package com.vinctus.venatus.protobuf;
-
-option java_package = "com.vinctus.venatus.protobuf";
-option java_outer_classname = "MovementProtos";
-
-message Move {
-	required string direction = 1;
-	required string mode = 2;
-}

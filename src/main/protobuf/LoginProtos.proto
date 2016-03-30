@@ -1,0 +1,21 @@
+package com.vinctus.venatus.protobuf;
+
+option java_package = "com.vinctus.venatus.protobuf";
+option java_outer_classname = "LoginProtos";
+
+message WrapperMessage {
+	oneof msg {
+		Login login = 1;
+	}
+}
+
+message Login {
+	required string email = 1;
+	required string password = 2;
+}
+
+message LoginResponse {
+	optional bytes userId = 1;
+	optional string success = 2;
+	optional string error = 3;
+}

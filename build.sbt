@@ -16,6 +16,7 @@ resolvers += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/release
 
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor" % "2.4.2",
+  "com.typesafe.akka" %% "akka-remote" % "2.4.2",
   "com.typesafe.slick" %% "slick" % "3.1.1",
   "org.postgresql" % "postgresql" % "9.4.1208.jre7",
   "de.svenkubiak" % "jBCrypt" % "0.4"
