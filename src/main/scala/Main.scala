@@ -1,7 +1,7 @@
 package com.vinctus.venatus
 
 import akka.actor.{ ActorSystem, Props }
-import server._
+import servers._
 
 object Main extends App {
 

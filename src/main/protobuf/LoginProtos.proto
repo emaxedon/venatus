@@ -6,12 +6,20 @@ option java_outer_classname = "LoginProtos";
 message WrapperMessage {
 	oneof msg {
 		Login login = 1;
+		Register register = 2;
 	}
 }
 
 message Login {
 	required string email = 1;
 	required string password = 2;
+}
+
+message Register {
+	required string email = 1;
+	required string password = 2;
+	optional string firstName = 3;
+	optional string lastName = 4;
 }
 
 message LoginResponse {
