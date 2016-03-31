@@ -19,7 +19,7 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-remote" % "2.4.2",
   "com.typesafe.slick" %% "slick" % "3.1.1",
   "org.postgresql" % "postgresql" % "9.4.1208.jre7",
-  "de.svenkubiak" % "jBCrypt" % "0.4"
+  "org.mindrot" % "jbcrypt" % "0.3m"
 )
 
 licenses := Seq("MIT" -> url("http://opensource.org/licenses/MIT"))
