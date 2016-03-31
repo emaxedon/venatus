@@ -1,13 +1,19 @@
 package com.vinctus.venatus.handlers
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import akka.actor.{ Actor, ActorRef, Props }
 import akka.io.{ IO, Tcp }
 import akka.util.ByteString
 import akka.io.Tcp.{ Write, Received }
+import org.mindrot.jbcrypt._
 import com.vinctus.venatus.protobuf.LoginProtos._
 import com.vinctus.venatus.protobuf.LoginProtos.WrapperMessage.Msg
+import com.vinctus.venatus.models.User
+import com.vinctus.venatus.dao.UserDAO
 
 class LoginHandler extends Actor {
+
+  val userDAO = new UserDAO
 
   def receive: Receive = {
     case Tcp.Received(data) =>
@@ -15,13 +21,38 @@ class LoginHandler extends Actor {
       val dataBytes: Array[Byte] = dataString.split(",").map(_.toByte)
       val wrapperMessage = WrapperMessage.parseFrom(dataBytes)
       
+      val loginResponse = LoginResponse()
+
       wrapperMessage.msg match {
         case Msg.Login(l) =>
-          println("Found login message")
+          userDAO.find(l.email).map(_ match {
+            case Some(user) =>
+              if (BCrypt.checkpw(l.password, user.password)) {
+                sender ! Tcp.Write(ByteString(loginResponse
+                  //.withUserId(user.id)
+                  .withSuccess("Login successful.").toByteArray))
+              }
+              else sender ! Tcp.Write(ByteString(loginResponse
+                .withError("Invalid password for that user.").toByteArray))
+            case None => sender ! Tcp.Write(ByteString(loginResponse
+                .withError("No user exists with that email address.").toByteArray))
+          })
         case Msg.Register(r) =>
-          println("Found register message")
+          val user = new User(
+            email = r.email, 
+            password = r.password,
+            firstName = r.firstName,
+            lastName = r.lastName)
+
+          userDAO.create(user).map(_ match {
+            case Some(user) => sender ! Tcp.Write(ByteString(loginResponse
+                  //.withUserId(user.id)
+                  .withSuccess("Registration successful.").toByteArray))
+            case None => sender ! Tcp.Write(ByteString(loginResponse
+                .withError("Failed to register.").toByteArray))
+          })
         case Msg.Empty => 
-          println("Failed to match message")
+          // TODO
       }
 
       // val login = Login(email = "emaxedon@gmail.com", password = "adminpass")

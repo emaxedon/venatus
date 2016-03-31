@@ -3,17 +3,13 @@ package com.vinctus.venatus.dao
 import scala.concurrent.{Future, Await}
 import scala.util.{Try, Success, Failure}
 import scala.concurrent.ExecutionContext.Implicits.global
-
 import java.util.UUID
 import java.sql.Timestamp
-
 import org.mindrot.jbcrypt._
-
 import slick.driver.PostgresDriver.api._
+import com.vinctus.venatus.models.User
 
-import models.User
-
-class UserDAO extends DatabaseConfig {
+class UserDAO extends DB {
 
   private val Users = TableQuery[UsersTable]
   private val UsersRoles = TableQuery[UsersRolesTable]

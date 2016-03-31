@@ -3,13 +3,10 @@ package com.vinctus.venatus.dao
 import scala.concurrent.{Future, Await}
 import scala.util.{Try, Success, Failure}
 import scala.concurrent.ExecutionContext.Implicits.global
-
 import java.util.UUID
 import java.sql.Timestamp
-
 import slick.driver.PostgresDriver.api._
-
-import models.Role
+import com.vinctus.venatus.models.Role
 
 class RolesTable(tag: Tag) extends Table[Role](tag, "roles") {
 
@@ -25,7 +22,7 @@ class RolesTable(tag: Tag) extends Table[Role](tag, "roles") {
   def * = (id, name, createdAt, updatedAt) <> ((Role.apply _).tupled, Role.unapply _)
 }
 
-class RoleDAO extends DatabaseConfig {
+class RoleDAO extends DB {
 
   private val Roles = TableQuery[RolesTable]
 

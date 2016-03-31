@@ -1,4 +1,4 @@
-package models
+package com.vinctus.venatus.models
 
 import java.util.UUID
 import java.sql.Timestamp

@@ -18,6 +18,8 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor" % "2.4.2",
   "com.typesafe.akka" %% "akka-remote" % "2.4.2",
   "com.typesafe.slick" %% "slick" % "3.1.1",
+  "com.typesafe.slick" %% "slick-hikaricp" % "3.1.1",
+  "org.slf4j" % "slf4j-nop" % "1.6.4",
   "org.postgresql" % "postgresql" % "9.4.1208.jre7",
   "org.mindrot" % "jbcrypt" % "0.3m"
 )
