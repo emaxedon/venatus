@@ -27,7 +27,7 @@ class UserDAO extends DB {
   def create(user: User): Future[Option[User]] = {
     val pwHash = BCrypt.hashpw(user.password, BCrypt.gensalt())
 
-    db.run((Users += user.patch(password = Some(pwHash))).asTry).flatMap(_ match {
+    db.run((Users += user.patch(password = Some(pwHash))).asTry).flatMap({
       case Success(result) => find(user.id)
       case Failure(e) => Future(None)
     })

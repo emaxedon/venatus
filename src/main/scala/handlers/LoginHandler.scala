@@ -25,7 +25,7 @@ class LoginHandler extends Actor {
 
       wrapperMessage.msg match {
         case Msg.Login(l) =>
-          userDAO.find(l.email).map(_ match {
+          userDAO.find(l.email).map({
             case Some(user) =>
               if (BCrypt.checkpw(l.password, user.password)) {
                 sender ! Tcp.Write(ByteString(loginResponse
@@ -44,9 +44,9 @@ class LoginHandler extends Actor {
             firstName = r.firstName,
             lastName = r.lastName)
 
-          userDAO.create(user).map(_ match {
+          userDAO.create(user).map({
             case Some(user) => sender ! Tcp.Write(ByteString(loginResponse
-                  //.withUserId(user.id)
+                  .withUserId(UUID(user.id.toString))
                   .withSuccess("Registration successful.").toByteArray))
             case None => sender ! Tcp.Write(ByteString(loginResponse
                 .withError("Failed to register.").toByteArray))

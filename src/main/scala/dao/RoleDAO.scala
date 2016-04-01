@@ -37,14 +37,14 @@ class RoleDAO extends DB {
   }
   
   def create(role: Role): Future[Option[Role]] = {
-    db.run((Roles += role).asTry).flatMap(_ match {
+    db.run((Roles += role).asTry).flatMap({
       case Success(result) => find(role.id)
       case Failure(e) => Future(None)
     })
   }
 
   def update(role: Role): Future[Option[Role]] = {
-    db.run(Roles.filter(_.id === role.id).map(u => u).update(role).asTry).flatMap(_ match {
+    db.run(Roles.filter(_.id === role.id).map(u => u).update(role).asTry).flatMap({
       case Success(result) if result == 1 => find(role.id)
       case Failure(e) => Future(None)
     })
