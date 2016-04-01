@@ -10,6 +10,10 @@ message WrapperMessage {
 	}
 }
 
+message UUID {
+	required string value = 1;
+}
+
 message Login {
 	required string email = 1;
 	required string password = 2;
@@ -23,7 +27,7 @@ message Register {
 }
 
 message LoginResponse {
-	optional bytes userId = 1;
+	optional UUID userId = 1;
 	optional string success = 2;
 	optional string error = 3;
 }

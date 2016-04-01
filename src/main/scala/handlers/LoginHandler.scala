@@ -29,7 +29,7 @@ class LoginHandler extends Actor {
             case Some(user) =>
               if (BCrypt.checkpw(l.password, user.password)) {
                 sender ! Tcp.Write(ByteString(loginResponse
-                  //.withUserId(user.id)
+                  .withUserId(UUID(user.id.toString))
                   .withSuccess("Login successful.").toByteArray))
               }
               else sender ! Tcp.Write(ByteString(loginResponse
