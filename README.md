@@ -1,7 +1,7 @@
 # Venatus
 
 ## About
-Venatus is a MORPG game server written in [Scala](http://scala-lang.org)). This codebase is open-source and contributions made by volunteers are welcome.
+Venatus is a MORPG game server written in [Scala](http://scala-lang.org). This codebase is open-source and contributions made by volunteers are welcome.
  
 ## Game Mechanics
 The game mechanics will follow that of a basic fantasy multiplayer online RPG. The game server will not handle logic for any new or innovative forms of gameplay. Only the basic features of common MORPGs will be implemented. These features include but are not limited to:
