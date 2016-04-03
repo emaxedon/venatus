@@ -1,4 +1,4 @@
-# Vinctus Venatus
+# Venatus
 
 ## About
 Vinctus Venatus is a MORPG game server written in Scala (more about the language can be found [here](http://scala-lang.org)). This codebase is open-source and contributions made by volunteers are welcome.
