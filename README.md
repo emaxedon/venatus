@@ -19,11 +19,11 @@ The game mechanics will follow that of a basic fantasy multiplayer online RPG wi
  
 ## Dependencies
 The game server will be designed to be non-blocking, scalable, and resilient. To accomplish these goals, the following tools will be implemented:
-- Akka, a toolkit for developing asynchronous, non-blocking message-driven applications that run on the JVM
-- Google's Protocol Buffers, a language-neutral, platform-neutral mechanism for serializing structured data
-- Slick, a functional relational mapper that allows for type safe database queries written in Scala
-- PostgreSQL, open-source relational database management system
-- jBCrypt, Java implementation of OpenBSD's Blowfish password hashing
+- [Akka](http://akka.io/), a toolkit for developing asynchronous, non-blocking message-driven applications that run on the JVM
+- [Google's Protocol Buffers](https://github.com/google/protobuf), a language-neutral, platform-neutral mechanism for serializing structured data
+- [Slick](http://slick.typesafe.com/), a functional relational mapper that allows for type safe database queries written in Scala
+- [PostgreSQL](http://www.postgresql.org/), open-source relational database management system
+- [jBCrypt](http://www.mindrot.org/projects/jBCrypt/), Java implementation of OpenBSD's Blowfish password hashing
 - More to come...
  
 ## Game Client
